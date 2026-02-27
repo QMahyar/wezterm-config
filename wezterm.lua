@@ -611,8 +611,8 @@ wezterm.on('pick-background', function(window, pane)
         { id = 'toggle',   label = '1  Toggle background — currently ' .. status                                              },
         { id = 'file',     label = '2  Choose a single image file'                                                            },
         { id = 'folder',   label = '3  Choose a folder  (' .. mode_label .. ')'                                               },
-        { id = 'next',     label = '4  Next image  (folder mode only)  — Ctrl+Shift+/'                                        },
-        { id = 'prev',     label = '5  Previous image  (folder mode only)  — Ctrl+Shift+,'                                    },
+        { id = 'next',     label = '4  Next image  (folder mode only)  — Ctrl+Shift+?'                                        },
+        { id = 'prev',     label = '5  Previous image  (folder mode only)  — Ctrl+Shift+<'                                    },
         { id = 'interval', label = '6  Auto-change interval  (folder mode) — currently ' .. (data.interval_minutes or 0) .. ' min  (0 = off)' },
       },
       action = wezterm.action_callback(function(win, pn, id, _label)
@@ -838,9 +838,10 @@ config.keys = {
   { key = 'b', mods = 'CTRL|SHIFT|ALT', action = act.EmitEvent 'pick-background' },
 
   -- Background quick shortcuts
-  { key = '/', mods = 'CTRL|SHIFT', action = act.EmitEvent 'bg-next'   },
-  { key = ',', mods = 'CTRL|SHIFT', action = act.EmitEvent 'bg-prev'   },
-  { key = '.', mods = 'CTRL|SHIFT', action = act.EmitEvent 'bg-toggle' },
+  -- Shift+/ = ?, Shift+, = <, Shift+. = >  — bind the shifted characters directly
+  { key = '?', mods = 'CTRL|SHIFT', action = act.EmitEvent 'bg-next'   },
+  { key = '<', mods = 'CTRL|SHIFT', action = act.EmitEvent 'bg-prev'   },
+  { key = '>', mods = 'CTRL|SHIFT', action = act.EmitEvent 'bg-toggle' },
 }
 
 -- ─────────────────────────────────────────────────────────────────────────────
