@@ -541,6 +541,7 @@ local function bg_folder_images(folder)
 end
 
 -- Apply or clear background on a window based on persisted state.
+-- Does NOT mutate data — index resolution is read-only here.
 local function bg_apply(window, data)
   local overrides = window:get_config_overrides() or {}
   if not data.enabled or data.path == '' then
@@ -556,9 +557,8 @@ local function bg_apply(window, data)
       window:set_config_overrides(overrides)
       return
     end
-    -- clamp index
-    local idx = ((data.index - 1) % #images) + 1
-    data.index = idx
+    -- wrap index safely (never goes below 1 or above #images)
+    local idx = ((( data.index or 1) - 1) % #images) + 1
     image_path = images[idx]
   end
   overrides.background = bg_make_layer(image_path)
@@ -588,9 +588,15 @@ local function bg_schedule_timer()
 end
 
 -- Apply saved background on every config reload (including startup).
+-- Guard: only apply if the override isn't already set to avoid flicker loops.
 wezterm.on('window-config-reloaded', function(window, pane)
-  local data = bg_load()
-  bg_apply(window, data)
+  local overrides = window:get_config_overrides() or {}
+  -- If background is already set via overrides, don't re-apply (avoids flicker).
+  -- Only apply when it's a fresh reload with no override yet (startup / Ctrl+Shift+R).
+  if overrides.background == nil then
+    local data = bg_load()
+    bg_apply(window, data)
+  end
   bg_schedule_timer()
 end)
 
@@ -676,7 +682,9 @@ wezterm.on('pick-background', function(window, pane)
 
         elseif id == 'prev' then
           if data.mode == 'folder' and data.path ~= '' then
-            data.index = math.max(1, (data.index or 1) - 1)
+            local images = bg_folder_images(data.path)
+            local count  = math.max(1, #images)
+            data.index   = (((data.index or 1) - 2) % count) + 1
             data.enabled = true
             bg_save(data)
             bg_apply(win, data)
@@ -731,7 +739,9 @@ end)
 wezterm.on('bg-prev', function(window, pane)
   local data = bg_load()
   if data.mode == 'folder' and data.path ~= '' then
-    data.index   = math.max(1, (data.index or 1) - 1)
+    local images = bg_folder_images(data.path)
+    local count  = math.max(1, #images)
+    data.index   = (((data.index or 1) - 2) % count) + 1
     data.enabled = true
     bg_save(data)
     bg_apply(window, data)
