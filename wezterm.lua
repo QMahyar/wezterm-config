@@ -86,36 +86,36 @@ config.colors = {
   scrollbar_thumb = '#9B1FAD',
 
   tab_bar = {
-    -- Tab bar strip background (darkest layer)
-    background        = '#0f0f0f',
-    inactive_tab_edge = '#333333',
-    -- Active tab: brightest, clearly stands out
+    -- Tab bar strip: clearly brighter than terminal bg (#0C0C0C)
+    background        = '#252525',
+    inactive_tab_edge = '#3a3a3a',
+    -- Active tab: brightest, pops above bar
     active_tab = {
-      bg_color  = '#1f1f1f',
+      bg_color  = '#3a3a3a',
       fg_color  = '#FFFFFF',
       intensity = 'Bold',
       underline = 'None',
       italic    = false,
     },
-    -- Inactive tab: muted, clearly distinct from active and bar bg
+    -- Inactive tab: sits between bar and active
     inactive_tab = {
-      bg_color = '#141414',
+      bg_color = '#1e1e1e',
       fg_color = '#888888',
       underline = 'None',
       italic    = false,
     },
-    -- Hovered inactive tab: mid-brightness
+    -- Hovered inactive: step up toward active
     inactive_tab_hover = {
-      bg_color = '#1a1a1a',
-      fg_color = '#CCCCCC',
+      bg_color = '#2e2e2e',
+      fg_color = '#DDDDDD',
       italic    = false,
     },
     new_tab = {
-      bg_color = '#0f0f0f',
+      bg_color = '#252525',
       fg_color = '#555555',
     },
     new_tab_hover = {
-      bg_color = '#1a1a1a',
+      bg_color = '#2e2e2e',
       fg_color = '#FFFFFF',
     },
   },
@@ -127,16 +127,16 @@ config.colors = {
 config.window_frame = {
   font      = wezterm.font { family = 'CaskaydiaMono Nerd Font Mono', weight = 'Regular' },
   font_size = 10.0,
-  active_titlebar_bg              = '#0f0f0f',
-  inactive_titlebar_bg            = '#0a0a0a',
+  active_titlebar_bg              = '#252525',
+  inactive_titlebar_bg            = '#1a1a1a',
   active_titlebar_fg              = '#CCCCCC',
-  inactive_titlebar_fg            = '#555555',
-  active_titlebar_border_bottom   = '#333333',
-  inactive_titlebar_border_bottom = '#1a1a1a',
+  inactive_titlebar_fg            = '#666666',
+  active_titlebar_border_bottom   = '#3a3a3a',
+  inactive_titlebar_border_bottom = '#252525',
   button_fg                       = '#CCCCCC',
-  button_bg                       = '#0f0f0f',
+  button_bg                       = '#252525',
   button_hover_fg                 = '#FFFFFF',
-  button_hover_bg                 = '#2a2a2a',
+  button_hover_bg                 = '#3a3a3a',
 }
 
 -- ─────────────────────────────────────────────────────────────────────────────
