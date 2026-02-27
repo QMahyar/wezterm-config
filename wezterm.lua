@@ -490,16 +490,24 @@ end
 -- Build the background layer table for a given image path.
 local function bg_make_layer(path)
   return {
+    -- Layer 1: solid dark base — blocks Windows desktop from showing through
     {
-      source     = { File = path },
-      width      = '100%',
-      height     = '100%',
-      repeat_x   = 'NoRepeat',
-      repeat_y   = 'NoRepeat',
+      source = { Color = '#0C0C0C' },
+      width  = '100%',
+      height = '100%',
+      opacity = 1.0,
+    },
+    -- Layer 2: the wallpaper, dimmed so text stays readable
+    {
+      source           = { File = path },
+      width            = '100%',
+      height           = '100%',
+      repeat_x         = 'NoRepeat',
+      repeat_y         = 'NoRepeat',
       vertical_align   = 'Middle',
       horizontal_align = 'Center',
-      opacity    = 0.15,          -- subtle: readable text over image
-      hsb        = { brightness = 0.8, saturation = 0.9, hue = 1.0 },
+      opacity          = 0.45,   -- visible but not overpowering
+      hsb              = { brightness = 0.7, saturation = 0.9, hue = 1.0 },
     },
   }
 end
