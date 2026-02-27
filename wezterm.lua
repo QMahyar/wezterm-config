@@ -86,32 +86,36 @@ config.colors = {
   scrollbar_thumb = '#9B1FAD',
 
   tab_bar = {
-    background        = '#191919',
-    inactive_tab_edge = '#2b2b2b',
+    -- Tab bar strip background (darkest layer)
+    background        = '#0f0f0f',
+    inactive_tab_edge = '#333333',
+    -- Active tab: brightest, clearly stands out
     active_tab = {
-      bg_color  = '#0C0C0C',
+      bg_color  = '#1f1f1f',
       fg_color  = '#FFFFFF',
-      intensity = 'Normal',
+      intensity = 'Bold',
       underline = 'None',
       italic    = false,
     },
+    -- Inactive tab: muted, clearly distinct from active and bar bg
     inactive_tab = {
-      bg_color = '#191919',
-      fg_color = '#767676',
+      bg_color = '#141414',
+      fg_color = '#888888',
       underline = 'None',
       italic    = false,
     },
+    -- Hovered inactive tab: mid-brightness
     inactive_tab_hover = {
-      bg_color = '#2b2b2b',
+      bg_color = '#1a1a1a',
       fg_color = '#CCCCCC',
       italic    = false,
     },
     new_tab = {
-      bg_color = '#191919',
-      fg_color = '#767676',
+      bg_color = '#0f0f0f',
+      fg_color = '#555555',
     },
     new_tab_hover = {
-      bg_color = '#2b2b2b',
+      bg_color = '#1a1a1a',
       fg_color = '#FFFFFF',
     },
   },
@@ -123,16 +127,16 @@ config.colors = {
 config.window_frame = {
   font      = wezterm.font { family = 'CaskaydiaMono Nerd Font Mono', weight = 'Regular' },
   font_size = 10.0,
-  active_titlebar_bg            = '#191919',
-  inactive_titlebar_bg          = '#111111',
-  active_titlebar_fg            = '#CCCCCC',
-  inactive_titlebar_fg          = '#767676',
-  active_titlebar_border_bottom = '#2b2b2b',
-  inactive_titlebar_border_bottom = '#191919',
-  button_fg                     = '#CCCCCC',
-  button_bg                     = '#191919',
-  button_hover_fg               = '#FFFFFF',
-  button_hover_bg               = '#3a3a3a',
+  active_titlebar_bg              = '#0f0f0f',
+  inactive_titlebar_bg            = '#0a0a0a',
+  active_titlebar_fg              = '#CCCCCC',
+  inactive_titlebar_fg            = '#555555',
+  active_titlebar_border_bottom   = '#333333',
+  inactive_titlebar_border_bottom = '#1a1a1a',
+  button_fg                       = '#CCCCCC',
+  button_bg                       = '#0f0f0f',
+  button_hover_fg                 = '#FFFFFF',
+  button_hover_bg                 = '#2a2a2a',
 }
 
 -- ─────────────────────────────────────────────────────────────────────────────
