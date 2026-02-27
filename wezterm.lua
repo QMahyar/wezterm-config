@@ -497,7 +497,7 @@ local function bg_make_layer(path)
       height = '100%',
       opacity = 1.0,
     },
-    -- Layer 2: the wallpaper, dimmed so text stays readable
+    -- Layer 2: the wallpaper
     {
       source           = { File = path },
       width            = '100%',
@@ -506,8 +506,15 @@ local function bg_make_layer(path)
       repeat_y         = 'NoRepeat',
       vertical_align   = 'Middle',
       horizontal_align = 'Center',
-      opacity          = 0.45,   -- visible but not overpowering
+      opacity          = 0.45,
       hsb              = { brightness = 0.7, saturation = 0.9, hue = 1.0 },
+    },
+    -- Layer 3: dark overlay to dim the image and improve text readability
+    {
+      source  = { Color = '#0C0C0C' },
+      width   = '100%',
+      height  = '100%',
+      opacity = 0.55,  -- higher = darker overlay
     },
   }
 end
